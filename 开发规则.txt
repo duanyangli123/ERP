@@ -1,0 +1,8 @@
+1.每次开发前先读取当前进度，开发完成后立即同步更新 D:\ERPAPI\untitled\docs\kaifa_status.md
+2.完整的数据库结构在 D:\ERPAPI\untitled\src\main\resources\db\init\mysql_ERP.sql 文件里
+3.初始化数据写到 D:\ERPAPI\untitled\src\main\resources\db\init\erp_demo_data.sql 中
+4.项目是 Java 8
+5.md 文档使用 UTF-8 直接追加写入
+6.docx 文档通过解压 word/document.xml 后修改正文，再重新打包写回
+7.更新文档时必须先保留原历史记录，再追加新记录，禁止整篇覆盖
+8.前端项目在 D:\ERPAPI\erp 文件夹
