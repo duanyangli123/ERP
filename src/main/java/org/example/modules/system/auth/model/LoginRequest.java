@@ -1,14 +1,20 @@
 package org.example.modules.system.auth.model;
 
-import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
+/**
+ * 登录请求
+ */
 @Data
 public class LoginRequest {
 
-    @NotBlank(message = "username is required")
+    /**
+     * 用户名
+     */
     private String username;
 
-    @NotBlank(message = "password is required")
+    /**
+     * 密码
+     */
     private String password;
 }

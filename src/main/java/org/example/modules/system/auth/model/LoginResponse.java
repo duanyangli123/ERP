@@ -1,16 +1,45 @@
 package org.example.modules.system.auth.model;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import lombok.Data;
 
+/**
+ * 登录响应
+ */
 @Data
 public class LoginResponse {
 
+    /**
+     * 访问令牌
+     */
     private String token;
-    private String tokenType;
-    private LocalDateTime expireTime;
-    private UserProfileVO user;
-    private List<String> roleCodes;
-    private List<String> permissionCodes;
+
+    /**
+     * 令牌类型
+     */
+    private String tokenType = "Bearer";
+
+    /**
+     * 用户ID
+     */
+    private Long userId;
+
+    /**
+     * 用户名
+     */
+    private String username;
+
+    /**
+     * 昵称
+     */
+    private String nickname;
+
+    public LoginResponse() {
+    }
+
+    public LoginResponse(String token, Long userId, String username, String nickname) {
+        this.token = token;
+        this.userId = userId;
+        this.username = username;
+        this.nickname = nickname;
+    }
 }

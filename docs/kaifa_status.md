@@ -1,6 +1,6 @@
 # ERP系统开发状态
 
-> 更新时间：2026-04-10 14:37
+> 更新时间：2026-04-10 14:59
 
 ---
 
@@ -15,6 +15,7 @@
 | 2026-04-10 14:32 | 菜单管理 | 创建SysMenu实体、Service、Controller |
 | 2026-04-10 14:34 | 部门管理 | 创建SysDept实体、Service、Controller |
 | 2026-04-10 14:36 | 岗位管理 | 创建SysPost实体、Service、Controller |
+| 2026-04-10 14:55 | 登录认证 | 创建JWT工具类、AuthService、AuthController |
 
 ---
 
@@ -30,7 +31,7 @@
 | 菜单管理 | ✅ 已完成 | Entity、Service、Controller |
 | 部门管理 | ✅ 已完成 | Entity、Service、Controller |
 | 岗位管理 | ✅ 已完成 | Entity、Service、Controller |
-| 登录认证 | ⏳ 待开发 | - |
+| 登录认证 | ✅ 已完成 | JWT工具类、AuthService、AuthController |
 | 基础数据模块 | ⏳ 待开发 | - |
 | 业务模块 | ⏳ 待开发 | - |
 | 财务模块 | ⏳ 待开发 | - |
