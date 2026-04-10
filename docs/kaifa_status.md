@@ -4,141 +4,123 @@
 
 ## 一、项目当前状态
 
-### 1.1 严重问题 ⚠️
+### 1.1 开发进度
 
-**源代码丢失**：除 `Main.java` 外，所有 Java 源文件在 Git 仓库中内容为空。
-
-影响范围：
-- 所有 Entity 实体类
-- 所有 Controller、Service、Mapper
-- 所有配置类
-
-### 1.2 现有文件清单
-
-| 文件/目录 | 状态 | 说明 |
-|-----------|------|------|
-| pom.xml | 空 | Maven 配置丢失 |
-| Main.java | ✅ 正常 | 启动类存在 |
-| application.yml | 空 | 配置文件丢失 |
-| mysql_ERP.sql | 空 | 数据库脚本丢失 |
-| erp_demo_data.sql | 空 | 初始化数据丢失 |
+| 模块 | 状态 | 说明 |
+|------|------|------|
+| 基础框架 | ✅ 已完成 | pom.xml、application.yml、BaseEntity、ApiResponse等 |
+| 用户管理 | ✅ 已完成 | Entity、Mapper、Service、Controller、SQL |
+| 角色管理 | ⏳ 开发中 | 实体类已创建 |
+| 菜单管理 | ⏳ 开发中 | 实体类已创建 |
+| 部门管理 | ⏳ 待开发 | 实体类已创建 |
+| 岗位管理 | ⏳ 待开发 | 实体类已创建 |
+| 登录认证 | ⏳ 待开发 | - |
+| 基础数据模块 | ⏳ 待开发 | - |
+| 业务模块 | ⏳ 待开发 | - |
+| 财务模块 | ⏳ 待开发 | - |
 
 ---
 
-## 二、待开发功能清单
+## 二、已创建文件清单
 
-根据项目模块规划，需要开发以下功能：
+### 2.1 基础框架
 
-### 2.1 系统管理模块 (system)
+| 文件路径 | 说明 |
+|----------|------|
+| `pom.xml` | Maven依赖配置 |
+| `src/main/resources/application.yml` | 应用配置 |
+| `src/main/java/org/example/common/entity/BaseEntity.java` | 基础实体类 |
+| `src/main/java/org/example/common/entity/BaseSimpleEntity.java` | 简单实体类 |
+| `src/main/java/org/example/common/model/ApiResponse.java` | 统一响应类 |
+| `src/main/java/org/example/config/MybatisPlusConfig.java` | MyBatis Plus配置 |
 
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| 用户管理 | 用户增删改查、角色分配 | 待开发 |
-| 角色管理 | 角色权限配置 | 待开发 |
-| 菜单管理 | 动态菜单配置 | 待开发 |
-| 部门管理 | 组织架构管理 | 待开发 |
-| 岗位管理 | 岗位信息管理 | 待开发 |
-| 登录认证 | JWT 身份认证 | 待开发 |
-| 审批流程 | OA 审批工作流 | 待开发 |
-| 消息通知 | 系统消息推送 | 待开发 |
-| 操作日志 | 审计日志记录 | 待开发 |
-| 数据导入导出 | Excel 导入导出 | 待开发 |
+### 2.2 系统管理模块 - 用户管理
 
-### 2.2 基础数据模块 (base)
+| 文件路径 | 说明 |
+|----------|------|
+| `modules/system/entity/SysUser.java` | 用户实体 |
+| `modules/system/entity/SysRole.java` | 角色实体 |
+| `modules/system/entity/SysMenu.java` | 菜单实体 |
+| `modules/system/entity/SysDept.java` | 部门实体 |
+| `modules/system/entity/SysPost.java` | 岗位实体 |
+| `modules/system/mapper/SysUserMapper.java` | 用户Mapper |
+| `modules/system/mapper/SysRoleMapper.java` | 角色Mapper |
+| `modules/system/service/SysUserService.java` | 用户Service接口 |
+| `modules/system/service/impl/SysUserServiceImpl.java` | 用户Service实现 |
+| `modules/system/controller/SysUserController.java` | 用户Controller |
 
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| 客户管理 | 客户基本信息、联系人、地址 | 待开发 |
-| 供应商管理 | 供应商基本信息、联系人 | 待开发 |
-| 物料管理 | 产品/物料信息管理 | 待开发 |
-| 仓库管理 | 仓库信息、库区、库位 | 待开发 |
-| 单位管理 | 计量单位维护 | 待开发 |
+### 2.3 数据库脚本
 
-### 2.3 销售管理模块 (sales)
-
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| 销售订单 | 销售订单创建、审批、执行 | 待开发 |
-| 销售出库 | 销售出库单生成、库存扣减 | 待开发 |
-| 销售退货 | 销售退货处理 | 待开发 |
-
-### 2.4 采购管理模块 (purchase)
-
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| 采购订单 | 采购订单创建、审批、执行 | 待开发 |
-| 采购入库 | 采购入库单生成、库存增加 | 待开发 |
-| 采购退货 | 采购退货处理 | 待开发 |
-
-### 2.5 库存管理模块 (inventory)
-
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| 库存查询 | 实时库存数量查询 | 待开发 |
-| 库存流水 | 库存变动记录 | 待开发 |
-
-### 2.6 财务管理模块 (finance)
-
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| 应收账款 | 销售应收款管理 | 待开发 |
-| 应付账款 | 采购应付款管理 | 待开发 |
-| 收款管理 | 收款单核销 | 待开发 |
-| 付款管理 | 付款单核销 | 待开发 |
-| 账户管理 | 银行账户管理 | 待开发 |
+| 文件路径 | 说明 |
+|----------|------|
+| `src/main/resources/db/init/mysql_ERP.sql` | 完整数据库结构（系统模块） |
 
 ---
 
-## 三、开发计划
+## 三、数据库表
 
-### 阶段一：基础框架搭建（优先级：高）
+### 3.1 已创建表
 
-1. **创建项目基础结构**
-   - pom.xml 依赖配置
-   - application.yml 配置
-   - 公共基类（BaseEntity、BaseSimpleEntity）
+| 表名 | 说明 | 状态 |
+|------|------|------|
+| sys_user | 用户表 | ✅ 已创建 |
+| sys_role | 角色表 | ✅ 已创建 |
+| sys_menu | 菜单表 | ✅ 已创建 |
+| sys_dept | 部门表 | ✅ 已创建 |
+| sys_post | 岗位表 | ✅ 已创建 |
+| sys_user_role | 用户角色关联表 | ✅ 已创建 |
+| sys_role_menu | 角色菜单关联表 | ✅ 已创建 |
 
-2. **系统管理功能**
-   - 用户管理
-   - 角色管理
-   - 菜单管理
-   - 登录认证
+### 3.2 默认数据
 
-### 阶段二：基础数据模块（优先级：高）
-
-3. **基础数据 CRUD**
-   - 客户管理
-   - 供应商管理
-   - 物料管理
-   - 仓库管理
-
-### 阶段三：业务模块（优先级：中）
-
-4. **销售模块** - 销售订单、销售出库
-5. **采购模块** - 采购订单、采购入库
-6. **库存模块** - 库存查询、库存流水
-
-### 阶段四：财务模块（优先级：低）
-
-7. **财务核算** - 应收应付、收付款
+- 管理员账号：`admin` / `admin123`
+- 超级管理员角色
+- 系统管理菜单
 
 ---
 
-## 四、数据库表规划
+## 四、API接口清单
 
-### 4.1 核心业务表
+### 4.1 用户管理
 
-- 系统模块：sys_user, sys_role, sys_menu, sys_dept, sys_post
-- 基础数据：base_customer, base_supplier, base_material, base_warehouse
-- 销售模块：sal_order, sal_outbound, sal_return
-- 采购模块：pur_order, pur_receipt, pur_return
-- 库存模块：inv_stock, inv_stock_flow
-- 财务模块：fin_account, fin_receivable, fin_payable
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | /api/system/user/page | 分页查询用户列表 |
+| GET | /api/system/user/{id} | 获取用户详情 |
+| POST | /api/system/user | 新增用户 |
+| PUT | /api/system/user | 更新用户 |
+| DELETE | /api/system/user/{id} | 删除用户 |
 
 ---
 
-## 五、注意事项
+## 五、后续开发计划
 
-1. ⚠️ 当前源代码全部丢失，需要重新开发
-2. 开发完成后及时提交 Git，避免再次丢失
-3. 每次功能开发完成后更新本文档
+### 阶段二：系统管理模块（继续）
+1. 角色管理 CRUD
+2. 菜单管理 CRUD
+3. 部门管理 CRUD
+4. 岗位管理 CRUD
+5. 登录认证 JWT
+
+### 阶段三：基础数据模块
+1. 客户管理
+2. 供应商管理
+3. 物料管理
+4. 仓库管理
+
+### 阶段四：业务模块
+1. 销售订单/出库
+2. 采购订单/入库
+3. 库存管理
+
+### 阶段五：财务模块
+1. 应收应付
+2. 收付款
+
+---
+
+## 六、注意事项
+
+1. ⚠️ 每次功能开发完成后必须更新本文档
+2. ⚠️ 重要数据及时提交Git备份
+3. 开发前先阅读 `docs/ERP开发指南.md`
