@@ -1,6 +1,22 @@
 # ERP系统开发状态
 
-> 更新时间：2026-04-10
+> 更新时间：2026-04-10 14:37
+
+---
+
+## 修改历史
+
+| 时间 | 更改项目 | 说明 |
+|------|----------|------|
+| 2026-04-10 14:00 | 基础框架 | 创建pom.xml、application.yml、BaseEntity、ApiResponse等 |
+| 2026-04-10 14:15 | 用户管理 | 创建SysUser实体、Mapper、Service、Controller、数据库脚本 |
+| 2026-04-10 14:20 | 更新文档 | 添加修改历史记录表格 |
+| 2026-04-10 14:30 | 角色管理 | 创建SysRole实体、Service、Controller |
+| 2026-04-10 14:32 | 菜单管理 | 创建SysMenu实体、Service、Controller |
+| 2026-04-10 14:34 | 部门管理 | 创建SysDept实体、Service、Controller |
+| 2026-04-10 14:36 | 岗位管理 | 创建SysPost实体、Service、Controller |
+
+---
 
 ## 一、项目当前状态
 
@@ -10,10 +26,10 @@
 |------|------|------|
 | 基础框架 | ✅ 已完成 | pom.xml、application.yml、BaseEntity、ApiResponse等 |
 | 用户管理 | ✅ 已完成 | Entity、Mapper、Service、Controller、SQL |
-| 角色管理 | ⏳ 开发中 | 实体类已创建 |
-| 菜单管理 | ⏳ 开发中 | 实体类已创建 |
-| 部门管理 | ⏳ 待开发 | 实体类已创建 |
-| 岗位管理 | ⏳ 待开发 | 实体类已创建 |
+| 角色管理 | ✅ 已完成 | Entity、Service、Controller |
+| 菜单管理 | ✅ 已完成 | Entity、Service、Controller |
+| 部门管理 | ✅ 已完成 | Entity、Service、Controller |
+| 岗位管理 | ✅ 已完成 | Entity、Service、Controller |
 | 登录认证 | ⏳ 待开发 | - |
 | 基础数据模块 | ⏳ 待开发 | - |
 | 业务模块 | ⏳ 待开发 | - |
