@@ -1,23 +1,55 @@
 package org.example.common.entity;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+/**
+ * 基础实体类 - 所有实体类的基类
+ * 包含通用字段：主键、创建时间、更新时间、删除标记
+ */
 @Data
 public class BaseEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 主键ID
+     */
+    @TableId(type = IdType.AUTO)
     private Long id;
-    private Long tenantId;
-    private String remark;
-    private Long createdBy;
-    private String createdName;
+
+    /**
+     * 创建人
+     */
+    @TableField(fill = FieldFill.INSERT)
+    private String createdBy;
+
+    /**
+     * 创建时间
+     */
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdTime;
-    private Long updatedBy;
-    private String updatedName;
+
+    /**
+     * 更新人
+     */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private String updatedBy;
+
+    /**
+     * 更新时间
+     */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedTime;
 
+    /**
+     * 删除标记：0-未删除，1-已删除
+     */
     @TableLogic
-    private Integer deleted;
+    @TableField(fill = FieldFill.INSERT)
+    private Boolean deleted;
+
 }
