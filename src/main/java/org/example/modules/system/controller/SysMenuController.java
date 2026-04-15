@@ -4,6 +4,7 @@ import org.example.common.model.ApiResponse;
 import org.example.modules.system.entity.SysMenu;
 import org.example.modules.system.service.SysMenuService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class SysMenuController {
      * 分页查询菜单列表
      */
     @GetMapping("/page")
-    public ApiResponse<Page<SysMenu>> page(
+    public ApiResponse<IPage<SysMenu>> page(
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(required = false) String menuName,

@@ -4,6 +4,7 @@ import org.example.common.model.ApiResponse;
 import org.example.modules.system.entity.SysPost;
 import org.example.modules.system.service.SysPostService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class SysPostController {
      * 分页查询岗位列表
      */
     @GetMapping("/page")
-    public ApiResponse<Page<SysPost>> page(
+    public ApiResponse<IPage<SysPost>> page(
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(required = false) String postName,

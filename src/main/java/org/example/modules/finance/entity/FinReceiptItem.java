@@ -1,10 +1,11 @@
 package org.example.modules.finance.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.math.BigDecimal;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.example.common.entity.BaseEntity;
+
+import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -13,5 +14,7 @@ public class FinReceiptItem extends BaseEntity {
 
     private Long receiptId;
     private Long receivableId;
-    private BigDecimal writeoffAmount;
+    private String receivableNo;
+    private BigDecimal amount;
+    private String remark;
 }

@@ -8,6 +8,7 @@ import org.example.modules.system.entity.SysUser;
 import org.example.modules.system.service.SysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -22,22 +23,33 @@ public class AuthServiceImpl implements AuthService {
 
     private final SysUserService sysUserService;
     private final JwtUtils jwtUtils;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public LoginResponse login(LoginRequest request) {
+        System.out.println("Login request: " + request.getUsername() + " / " + request.getPassword());
         // 查询用户
+        System.out.println("Querying user: " + request.getUsername());
         SysUser user = sysUserService.getOne(new LambdaQueryWrapper<SysUser>()
-                .eq(SysUser::getUsername, request.getUsername())
-                .eq(SysUser::getStatus, true));
+                .eq(SysUser::getUsername, request.getUsername()));
+        
+        System.out.println("User found: " + (user != null));
+        if (user != null) {
+            System.out.println("User status: " + user.getStatus() + ", password hash: " + user.getPassword().substring(0, 20) + "...");
+        }
 
         if (user == null) {
             throw new RuntimeException("用户名或密码错误");
         }
 
-        // 验证密码（这里简单比较，实际应使用BCrypt）
-        // BCrypt加密密码：$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iKTVKIUi 是 admin123
-        if (!user.getPassword().equals(request.getPassword())) {
+        // 验证密码
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new RuntimeException("用户名或密码错误");
+        }
+
+        // 检查用户状态
+        if (user.getStatus() == null || !user.getStatus()) {
+            throw new RuntimeException("用户已被禁用");
         }
 
         // 生成Token

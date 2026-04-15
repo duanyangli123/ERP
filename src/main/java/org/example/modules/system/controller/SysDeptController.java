@@ -4,6 +4,7 @@ import org.example.common.model.ApiResponse;
 import org.example.modules.system.entity.SysDept;
 import org.example.modules.system.service.SysDeptService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class SysDeptController {
      * 分页查询部门列表
      */
     @GetMapping("/page")
-    public ApiResponse<Page<SysDept>> page(
+    public ApiResponse<IPage<SysDept>> page(
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(required = false) String deptName,

@@ -92,6 +92,6 @@ public class ApiResponse<T> implements Serializable {
      * 判断是否成功
      */
     public boolean isSuccess() {
-        return SUCCESS_CODE.equals(this.code);
+        return SUCCESS_CODE == this.code;
     }
 }

@@ -4,6 +4,7 @@ import org.example.common.model.ApiResponse;
 import org.example.modules.system.entity.SysUser;
 import org.example.modules.system.service.SysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class SysUserController {
      * 分页查询用户列表
      */
     @GetMapping("/page")
-    public ApiResponse<Page<SysUser>> page(
+    public ApiResponse<IPage<SysUser>> page(
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(required = false) String username,
