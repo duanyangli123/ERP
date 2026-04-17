@@ -32,12 +32,9 @@ public class MybatisPlusConfig implements MetaObjectHandler {
      */
     @Override
     public void insertFill(MetaObject metaObject) {
-        // 获取当前登录用户名（如果未登录则使用system）
-        String username = getCurrentUsername();
-        
-        this.strictInsertFill(metaObject, "createdBy", String.class, username);
+        this.strictInsertFill(metaObject, "createdBy", String.class, "system");
         this.strictInsertFill(metaObject, "createdTime", LocalDateTime.class, LocalDateTime.now());
-        this.strictInsertFill(metaObject, "updatedBy", String.class, username);
+        this.strictInsertFill(metaObject, "updatedBy", String.class, "system");
         this.strictInsertFill(metaObject, "updatedTime", LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject, "deleted", Boolean.class, false);
     }
@@ -47,17 +44,7 @@ public class MybatisPlusConfig implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-        String username = getCurrentUsername();
-        this.strictUpdateFill(metaObject, "updatedBy", String.class, username);
+        this.strictUpdateFill(metaObject, "updatedBy", String.class, "system");
         this.strictUpdateFill(metaObject, "updatedTime", LocalDateTime.class, LocalDateTime.now());
-    }
-
-    /**
-     * 获取当前用户名
-     * 实际项目中应该从上下文获取
-     */
-    private String getCurrentUsername() {
-        // TODO: 从 ThreadLocal 或 SecurityContext 获取当前登录用户
-        return "system";
     }
 }

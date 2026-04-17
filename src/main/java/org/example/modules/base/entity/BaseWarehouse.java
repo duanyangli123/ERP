@@ -17,9 +17,8 @@ public class BaseWarehouse extends BaseEntity {
     private String province;
     private String city;
     private String address;
-    private String contactPerson;
+    private String manager;
     private String phone;
-    private Integer sort;
     private String remark;
     private Boolean status;
 }

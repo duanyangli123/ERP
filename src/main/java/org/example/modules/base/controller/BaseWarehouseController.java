@@ -30,7 +30,7 @@ public class BaseWarehouseController {
         wrapper.like(warehouseName != null, BaseWarehouse::getWarehouseName, warehouseName)
                 .like(warehouseCode != null, BaseWarehouse::getWarehouseCode, warehouseCode)
                 .eq(status != null, BaseWarehouse::getStatus, status)
-                .orderByAsc(BaseWarehouse::getSort);
+                .orderByDesc(BaseWarehouse::getCreatedTime);
         return ApiResponse.success(baseWarehouseService.page(page, wrapper));
     }
 

@@ -27,17 +27,10 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponse login(LoginRequest request) {
-        System.out.println("Login request: " + request.getUsername() + " / " + request.getPassword());
         // 查询用户
-        System.out.println("Querying user: " + request.getUsername());
         SysUser user = sysUserService.getOne(new LambdaQueryWrapper<SysUser>()
                 .eq(SysUser::getUsername, request.getUsername()));
         
-        System.out.println("User found: " + (user != null));
-        if (user != null) {
-            System.out.println("User status: " + user.getStatus() + ", password hash: " + user.getPassword().substring(0, 20) + "...");
-        }
-
         if (user == null) {
             throw new RuntimeException("用户名或密码错误");
         }

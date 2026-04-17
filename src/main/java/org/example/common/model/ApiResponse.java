@@ -89,6 +89,13 @@ public class ApiResponse<T> implements Serializable {
     }
 
     /**
+     * 失败响应（快捷方法）
+     */
+    public static <T> ApiResponse<T> fail(String message) {
+        return new ApiResponse<>(ERROR_CODE, message, null);
+    }
+
+    /**
      * 判断是否成功
      */
     public boolean isSuccess() {

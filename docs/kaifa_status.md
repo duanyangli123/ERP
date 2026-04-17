@@ -1,6 +1,6 @@
 # ERP系统开发状态
 
-> 更新时间：2026-04-15 10:30
+> 更新时间：2026-04-16 11:00
 
 ---
 
@@ -45,6 +45,15 @@
 | 2026-04-15 11:05 | 前端采购模块 | 实现采购订单、采购入库、采购退货页面 |
 | 2026-04-15 11:10 | 前端财务模块 | 实现应收账款、应付账款、收款单、付款单、账户管理页面 |
 | 2026-04-15 11:15 | 更新文档 | 补充前端开发记录到开发状态文档 |
+| 2026-04-16 10:30 | 前端库存模块 | 创建库存查询、库存流水页面及API |
+| 2026-04-16 10:40 | 前端审批流程 | 创建流程定义、我的任务页面及API |
+| 2026-04-16 10:50 | 前端消息通知 | 创建消息列表页面及API |
+| 2026-04-16 11:00 | 更新文档 | 补充新增前端模块到开发状态文档 |
+| 2026-04-16 11:30 | 数据权限控制 | 创建DataScope注解、DataScopeInterceptor、DataScopeService等 |
+| 2026-04-16 11:45 | 操作日志记录 | 创建SysOperLog实体、OperLog注解、OperLogInterceptor等 |
+| 2026-04-16 12:00 | 文件上传下载 | 创建SysFile实体、文件上传Service、Controller |
+| 2026-04-16 12:30 | 前端优化 | 添加库存管理、审批流程、消息通知菜单到侧边栏；优化全局样式 |
+| 2026-04-16 13:00 | 修复后端代码 | 修复DataScopeInterceptor导入、UserContext、SecurityUtils等 |
 
 ---
 
@@ -69,6 +78,9 @@
 | 审批流程 | ✅ 已完成 | 流程定义、任务管理、审批候选人 |
 | 消息通知 | ✅ 已完成 | 消息管理、通知分发 |
 | 前端开发 | ✅ 已完成 | 完整前端页面，涵盖所有业务模块 |
+| 数据权限控制 | ✅ 已完成 | DataScope注解、拦截器、Service |
+| 操作日志记录 | ✅ 已完成 | OperLog注解、拦截器、Service |
+| 文件上传下载 | ✅ 已完成 | 文件上传、下载、预览、删除 |
 
 ---
 
@@ -141,6 +153,44 @@
 | `modules/system/model/UserRoleAssignRequest.java` | 用户角色分配请求 |
 | `modules/system/model/SysMenuTreeVO.java` | 菜单树VO |
 | `modules/system/model/ResetPasswordRequest.java` | 重置密码请求 |
+
+#### 2.2.5 数据权限
+
+| 文件路径 | 说明 |
+|----------|------|
+| `modules/system/auth/annotation/DataScope.java` | 数据权限注解 |
+| `modules/system/auth/enums/DataScopeType.java` | 数据权限类型枚举 |
+| `modules/system/auth/context/DataScopeContext.java` | 数据权限上下文 |
+| `modules/system/auth/interceptor/DataScopeInterceptor.java` | 数据权限拦截器 |
+| `modules/system/auth/util/SecurityUtils.java` | 安全工具类 |
+| `modules/system/service/DataScopeService.java` | 数据权限Service接口 |
+| `modules/system/service/impl/DataScopeServiceImpl.java` | 数据权限Service实现 |
+| `modules/system/controller/DataScopeController.java` | 数据权限Controller |
+| `modules/system/entity/SysRole.java` | 角色实体（扩展dataScope字段） |
+| `modules/system/entity/SysUserRole.java` | 用户角色关联实体 |
+| `modules/system/mapper/SysUserRoleMapper.java` | 用户角色Mapper |
+
+#### 2.2.6 操作日志
+
+| 文件路径 | 说明 |
+|----------|------|
+| `modules/system/auth/annotation/OperLog.java` | 操作日志注解 |
+| `modules/system/auth/interceptor/OperLogInterceptor.java` | 操作日志拦截器 |
+| `modules/system/entity/SysOperLog.java` | 操作日志实体 |
+| `modules/system/mapper/SysOperLogMapper.java` | 操作日志Mapper |
+| `modules/system/service/SysOperLogService.java` | 操作日志Service接口 |
+| `modules/system/service/impl/SysOperLogServiceImpl.java` | 操作日志Service实现 |
+| `modules/system/controller/SysOperLogController.java` | 操作日志Controller |
+
+#### 2.2.7 文件管理
+
+| 文件路径 | 说明 |
+|----------|------|
+| `modules/system/entity/SysFile.java` | 文件实体 |
+| `modules/system/mapper/SysFileMapper.java` | 文件Mapper |
+| `modules/system/service/SysFileService.java` | 文件Service接口 |
+| `modules/system/service/impl/SysFileServiceImpl.java` | 文件Service实现 |
+| `modules/system/controller/SysFileController.java` | 文件Controller |
 
 ### 2.3 基础数据模块
 
@@ -353,6 +403,9 @@
 | `src/api/sales.js` | 销售模块接口（订单、出库、退货） |
 | `src/api/purchase.js` | 采购模块接口（订单、入库、退货） |
 | `src/api/finance.js` | 财务模块接口（应收应付、收付款、账户） |
+| `src/api/inventory.js` | 库存模块接口（库存查询、库存流水） |
+| `src/api/oa.js` | 审批流程接口（流程定义、任务管理） |
+| `src/api/message.js` | 消息通知接口（消息列表、发送消息） |
 
 #### 2.9.5 布局和页面
 
@@ -405,6 +458,26 @@
 | `src/views/finance/receipt/index.vue` | 收款单页面 |
 | `src/views/finance/payment/index.vue` | 付款单页面 |
 | `src/views/finance/account/index.vue` | 账户管理页面 |
+
+#### 2.9.11 库存模块页面
+
+| 文件路径 | 说明 |
+|----------|------|
+| `src/views/inventory/stock/index.vue` | 库存查询页面 |
+| `src/views/inventory/flow/index.vue` | 库存流水页面 |
+
+#### 2.9.12 审批流程页面
+
+| 文件路径 | 说明 |
+|----------|------|
+| `src/views/oa/process/index.vue` | 流程定义页面 |
+| `src/views/oa/task/index.vue` | 我的任务页面 |
+
+#### 2.9.13 消息通知页面
+
+| 文件路径 | 说明 |
+|----------|------|
+| `src/views/message/list/index.vue` | 消息列表页面 |
 
 ---
 
@@ -628,6 +701,72 @@
 | PUT | /api/finance/payment | 更新付款单 |
 | DELETE | /api/finance/payment/{id} | 删除付款单 |
 
+### 4.8 审批流程接口
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | /api/oa/processDef/page | 分页查询流程定义列表 |
+| GET | /api/oa/processDef/{id} | 获取流程定义详情 |
+| POST | /api/oa/processDef | 新增流程定义 |
+| PUT | /api/oa/processDef | 更新流程定义 |
+| DELETE | /api/oa/processDef/{id} | 删除流程定义 |
+| POST | /api/oa/processDef/publish/{id} | 发布流程定义 |
+| GET | /api/oa/processDef/tree | 获取流程定义树 |
+| GET | /api/oa/processDef/nodes/{processDefId} | 获取流程节点 |
+| POST | /api/oa/processDef/nodes/{processDefId} | 保存流程节点 |
+| GET | /api/oa/task/my/page | 分页查询我的任务列表 |
+| GET | /api/oa/task/my | 获取我的任务列表 |
+| GET | /api/oa/task/{id} | 获取任务详情 |
+| POST | /api/oa/task/approve | 审批通过 |
+| POST | /api/oa/task/reject | 审批驳回 |
+| POST | /api/oa/task/delegate | 转办任务 |
+| GET | /api/oa/approver/candidates | 获取审批候选人 |
+
+### 4.9 消息通知接口
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | /api/system/message/page | 分页查询消息列表 |
+| GET | /api/system/message/list | 获取消息列表 |
+| GET | /api/system/message/{id} | 获取消息详情 |
+| DELETE | /api/system/message/{id} | 删除消息 |
+| DELETE | /api/system/message/batch | 批量删除消息 |
+| PUT | /api/system/message/read/{id} | 标记消息已读 |
+| PUT | /api/system/message/read/all | 全部标记已读 |
+| POST | /api/system/message | 发送消息 |
+
+### 4.10 数据权限接口
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | /api/system/dataScope/current | 获取当前用户数据权限 |
+| POST | /api/system/dataScope/set | 手动设置数据权限范围 |
+| POST | /api/system/dataScope/clear | 清除数据权限上下文 |
+| GET | /api/system/dataScope/check | 检查用户是否有数据权限 |
+
+### 4.11 操作日志接口
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | /api/system/operLog/page | 分页查询操作日志 |
+| GET | /api/system/operLog/{id} | 获取日志详情 |
+| DELETE | /api/system/operLog/{id} | 删除日志 |
+| DELETE | /api/system/operLog/batch | 批量删除日志 |
+| DELETE | /api/system/operLog/clean | 清理历史日志 |
+
+### 4.12 文件管理接口
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| POST | /api/system/file/upload | 上传文件 |
+| POST | /api/system/file/upload/biz | 上传文件（带业务关联） |
+| GET | /api/system/file/page | 分页查询文件列表 |
+| GET | /api/system/file/list | 根据业务ID获取文件列表 |
+| GET | /api/system/file/view/{id} | 查看文件 |
+| GET | /api/system/file/download/{id} | 下载文件 |
+| DELETE | /api/system/file/{id} | 删除文件 |
+| DELETE | /api/system/file/batch | 批量删除文件 |
+
 ---
 
 ## 五、后续开发计划
@@ -695,13 +834,19 @@
 - [x] 销售管理页面（销售订单、销售出库、销售退货）
 - [x] 采购管理页面（采购订单、采购入库、采购退货）
 - [x] 财务模块页面（应收账款、应付账款、收款单、付款单、账户）
+- [x] 库存管理页面（库存查询、库存流水）
+- [x] 审批流程页面（流程定义、我的任务）
+- [x] 消息通知页面（消息列表、发送消息）
 
-### 5.7 第七阶段：功能完善（待开发）
+### 5.7 第七阶段：功能完善（开发中）
 
-- [ ] 数据权限控制
-- [ ] 操作日志记录
-- [ ] 文件上传下载
+- [x] 数据权限控制
+- [x] 操作日志记录
+- [x] 文件上传下载
 - [ ] 数据导入导出
+- [ ] 报表统计
+- [ ] 性能优化
+- [ ] 安全加固
 - [ ] 报表统计
 - [ ] 性能优化
 - [ ] 安全加固

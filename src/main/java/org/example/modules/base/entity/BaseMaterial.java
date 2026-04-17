@@ -1,5 +1,6 @@
 package org.example.modules.base.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,25 +15,12 @@ public class BaseMaterial extends BaseEntity {
 
     private String materialCode;
     private String materialName;
-    private String shortName;
-    private String barCode;
-    private Integer materialType;
-    private String unit;
     private String spec;
-    private String color;
-    private String brand;
-    private String categoryCode;
-    private String categoryName;
+    private String unit;
+    private String category;
+    private Integer safeStock;
     private BigDecimal purchasePrice;
     private BigDecimal salePrice;
-    private BigDecimal costPrice;
-    private Integer minStock;
-    private Integer maxStock;
-    private Integer safeStock;
-    private String warehouseCode;
-    private String locationCode;
-    private BigDecimal taxRate;
     private String remark;
-    private String imageUrl;
     private Boolean status;
 }
